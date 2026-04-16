@@ -1,0 +1,2 @@
+model,cv_f1,accuracy,precision,recall,f1_score,roc_auc
+DecisionTreeClassifier,,1.0,1.0,1.0,1.0,1.0

@@ -1,0 +1,127 @@
+AI-Based Phishing Website Detection System
+Dissertation Appendix Mapping and Submission Guide
+Generated: 2026-04-15
+
+A) Project identity
+- Project title: AI-Based Phishing Website Detection System Using Machine Learning
+- Research design: Quantitative, experimental, supervised binary classification
+- Classes: phishing=1, legitimate=0
+
+B) Chapter-to-artifact mapping
+
+Chapter 1 (Introduction and Problem Context)
+1. Cybersecurity motivation and phishing impact:
+   - Use project overview from README and UI screenshot evidence.
+2. Problem statement and objective:
+   - Refer to backend prediction objective and binary output behavior.
+3. Scope and expected outcomes:
+   - Cite generated model and evaluation artifacts listed below.
+
+Chapter 2 (Literature and Technical Background)
+1. Feature families and rationale:
+   - URL features implementation: src/url_features.py
+   - Domain/WHOIS features implementation: src/domain_features.py
+   - Content/HTML features implementation: src/content_features.py
+2. ML model background and comparison framing:
+   - Candidate model training and tuning logic: src/train.py
+
+Chapter 3 (Methodology)
+1. Dataset collection and labeling workflow:
+   - Data loading/merging: src/data_loader.py
+   - Raw datasets: data/raw/phishing_urls.csv, data/raw/legitimate_urls.csv, data/raw/combined_raw.csv
+2. Data preprocessing and cleaning:
+   - Cleaning: src/data_cleaning.py
+   - Preprocessing/imputation/scaling: src/preprocessing.py
+3. Feature engineering and selection:
+   - Feature engineering pipeline: src/feature_engineering.py
+   - Feature selection/ranking: src/feature_selection.py
+   - Ranked features output: data/processed/feature_rankings.csv
+4. Experimental setup and reproducibility:
+   - Reproducible config parameters: src/config.py
+   - CLI entry points: main.py
+
+Chapter 4 (Implementation and Results)
+1. System implementation evidence:
+   - End-to-end pipeline orchestration: src/pipeline.py
+   - Backend API: app/app.py
+   - Frontend UI: frontend/src/pages/Home.jsx and components
+2. Quantitative result evidence:
+   - Evaluation report: reports/evaluation_report.txt
+   - Model comparison table: reports/model_comparison.csv
+   - Confusion matrix figure: reports/figures/confusion_matrix.png
+   - Feature importance figure: reports/figures/feature_importance.png
+   - Model comparison chart: reports/figures/model_comparison.png
+   - ROC curve: reports/figures/roc_curve.png
+
+Chapter 5 (Conclusion and Future Work)
+1. Achievement summary:
+   - Use final metrics from reports/evaluation_report.txt
+2. Limitations and next steps:
+   - Use README future improvements section.
+
+C) Appendix-ready evidence list
+1. Code quality and modular architecture
+   - src/config.py
+   - src/utils.py
+   - src/data_loader.py
+   - src/data_cleaning.py
+   - src/url_features.py
+   - src/domain_features.py
+   - src/content_features.py
+   - src/feature_engineering.py
+   - src/feature_selection.py
+   - src/preprocessing.py
+   - src/train.py
+   - src/evaluate.py
+   - src/predict.py
+   - src/pipeline.py
+   - app/app.py
+   - main.py
+
+2. Data artifacts
+   - data/processed/cleaned_dataset.csv
+   - data/processed/featured_dataset.csv
+   - data/processed/selected_features_dataset.csv
+   - data/processed/feature_rankings.csv
+
+3. Model artifacts
+   - models/best_model.pkl
+   - models/scaler.pkl
+   - models/label_encoder.pkl
+   - models/selected_features.pkl
+
+4. Evaluation artifacts
+   - reports/evaluation_report.txt
+   - reports/model_comparison.csv
+   - reports/figures/confusion_matrix.png
+   - reports/figures/feature_importance.png
+   - reports/figures/model_comparison.png
+   - reports/figures/roc_curve.png
+
+5. Reliability and test evidence
+   - tests/test_url_features.py
+   - tests/test_domain_features.py
+   - tests/test_preprocessing.py
+   - tests/test_prediction.py
+   - Last run summary: 4 tests passed
+
+6. Operational logs
+   - logs/training.log
+   - logs/whois_failures.log
+   - logs/scraping_failures.log
+
+D) Snapshot metrics for write-up (latest run)
+- Best model (evaluation run): RandomForestClassifier
+- Accuracy: 1.0000
+- Precision: 1.0000
+- Recall: 1.0000
+- F1-score: 1.0000
+- ROC-AUC: 1.0000
+
+E) Final submission checklist
+- Include system architecture diagram (optional but recommended)
+- Include frontend prediction screenshots
+- Include API request/response screenshot
+- Include all generated figures and CSV tables in appendix
+- Keep dataset source citations (PhishTank/OpenPhish/Tranco/UCI/Kaggle as used)
+- Attach this file and final_submission_checklist.txt as appendix evidence

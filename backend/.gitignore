@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+*.pkl
+logs/*.log
+models/*.pkl
+reports/figures/*.png

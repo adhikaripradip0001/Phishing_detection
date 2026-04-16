@@ -1,0 +1,47 @@
+AI-Based Phishing Website Detection System
+Final Submission Checklist
+Generated: 2026-04-15
+
+Dataset used for this run:
+- d:/AIbased Phishing  website/backend/data/raw/combined_raw.csv
+
+Validation run summary:
+- Unit tests: PASS (4 passed)
+- Training command: PASS
+- Evaluation command: PASS
+
+Commands executed:
+1) python -m pytest -q
+2) python main.py train --dataset "d:/AIbased Phishing  website/backend/data/raw/combined_raw.csv" --no-content
+3) python main.py evaluate --dataset "d:/AIbased Phishing  website/backend/data/raw/combined_raw.csv" --no-content
+
+Model/evaluation summary (latest run):
+- Best model (train): Random Forest
+- Accuracy: 1.0000
+- Precision: 1.0000
+- Recall: 1.0000
+- F1-score: 1.0000
+- ROC-AUC: 1.0000
+
+Required artifacts check:
+- OK models/best_model.pkl
+- OK models/scaler.pkl
+- OK models/label_encoder.pkl
+- OK models/selected_features.pkl
+- OK reports/evaluation_report.txt
+- OK reports/model_comparison.csv
+- OK reports/figures/confusion_matrix.png
+- OK reports/figures/feature_importance.png
+- OK reports/figures/model_comparison.png
+- OK reports/figures/roc_curve.png
+- OK data/processed/cleaned_dataset.csv
+- OK data/processed/featured_dataset.csv
+- OK data/processed/selected_features_dataset.csv
+- OK data/processed/feature_rankings.csv
+- OK logs/training.log
+- OK logs/whois_failures.log
+- OK logs/scraping_failures.log
+
+Notes:
+- WHOIS failures for non-real sample domains were logged as expected.
+- The pipeline remains stable with graceful fallback behavior for lookup failures.
