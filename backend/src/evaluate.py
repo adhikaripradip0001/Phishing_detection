@@ -104,7 +104,7 @@ def save_model_comparison_csv(comparison: pd.DataFrame) -> None:
     comparison.to_csv(MODEL_COMPARISON_CSV_FILE, index=False)
 
 
-def evaluate_saved_model(dataset: pd.DataFrame | None = None) -> tuple[pd.DataFrame, dict[str, float], str]:
+def evaluate_saved_model(dataset: pd.DataFrame | None = None, split_data: bool = True) -> tuple[pd.DataFrame, dict[str, float], str]:
     if dataset is None:
         dataset = pd.read_csv(SELECTED_FEATURES_DATASET_FILE)
 
@@ -116,13 +116,17 @@ def evaluate_saved_model(dataset: pd.DataFrame | None = None) -> tuple[pd.DataFr
     features, target = prepare_training_features(dataset)
     target_encoded = target.astype(int).to_numpy()
 
-    _, X_test, _, y_test = train_test_split(
-        features,
-        target_encoded,
-        test_size=TEST_SIZE,
-        random_state=RANDOM_STATE,
-        stratify=target_encoded,
-    )
+    if split_data:
+        _, X_test, _, y_test = train_test_split(
+            features,
+            target_encoded,
+            test_size=TEST_SIZE,
+            random_state=RANDOM_STATE,
+            stratify=target_encoded,
+        )
+    else:
+        X_test = features
+        y_test = target_encoded
 
     if not isinstance(preprocessor, TabularPreprocessor):
         raise TypeError("Loaded preprocessor artifact is invalid.")

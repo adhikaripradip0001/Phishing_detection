@@ -10,13 +10,13 @@ import pandas as pd
 from sklearn.base import clone
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
+from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder
 
-from src.config import BEST_MODEL_FILE, LABEL_ENCODER_FILE, MODEL_SEARCH_SPACE, RANDOM_STATE, SCALER_FILE, TEST_SIZE, TRAINING_LOG_FILE, VALIDATION_CV
+from src.config import BEST_MODEL_FILE, LABEL_ENCODER_FILE, MODEL_SEARCH_SPACE, RANDOM_STATE, SCALER_FILE, TRAINING_LOG_FILE, VALIDATION_CV
 from src.evaluate import evaluate_predictions
 from src.preprocessing import TabularPreprocessor, prepare_training_features
 from src.utils import save_joblib_artifact, setup_logger
@@ -64,26 +64,21 @@ def _candidate_models() -> dict[str, tuple[object, dict[str, list[object]]]]:
     return models
 
 
-def train_models(dataset: pd.DataFrame) -> TrainingResult:
-    working = dataset.copy()
-    if "label" not in working.columns:
+def train_models(train_dataset: pd.DataFrame, test_dataset: pd.DataFrame) -> TrainingResult:
+    working_train = train_dataset.copy()
+    working_test = test_dataset.copy()
+    if "label" not in working_train.columns or "label" not in working_test.columns:
         raise ValueError("Training dataset must include a label column.")
 
-    features, target = prepare_training_features(working)
+    train_features, train_target = prepare_training_features(working_train)
+    test_features, test_target = prepare_training_features(working_test)
     label_encoder = LabelEncoder()
-    target_encoded = label_encoder.fit_transform(target.map({0: "legitimate", 1: "phishing"}))
+    y_train = label_encoder.fit_transform(train_target.map({0: "legitimate", 1: "phishing"}))
+    y_test = label_encoder.transform(test_target.map({0: "legitimate", 1: "phishing"}))
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        features,
-        target_encoded,
-        test_size=TEST_SIZE,
-        random_state=RANDOM_STATE,
-        stratify=target_encoded,
-    )
-
-    preprocessor = TabularPreprocessor().fit(X_train)
-    X_train_scaled = preprocessor.transform(X_train)
-    X_test_scaled = preprocessor.transform(X_test)
+    preprocessor = TabularPreprocessor().fit(train_features)
+    X_train_scaled = preprocessor.transform(train_features)
+    X_test_scaled = preprocessor.transform(test_features)
 
     comparison_rows: list[dict[str, float | str]] = []
     best_estimator = None

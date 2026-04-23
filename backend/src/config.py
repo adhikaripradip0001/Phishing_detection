@@ -24,6 +24,7 @@ COMBINED_RAW_FILE = RAW_DATA_DIR / "combined_raw.csv"
 CLEANED_DATASET_FILE = PROCESSED_DATA_DIR / "cleaned_dataset.csv"
 FEATURED_DATASET_FILE = PROCESSED_DATA_DIR / "featured_dataset.csv"
 SELECTED_FEATURES_DATASET_FILE = PROCESSED_DATA_DIR / "selected_features_dataset.csv"
+HOLDOUT_FEATURES_DATASET_FILE = PROCESSED_DATA_DIR / "holdout_features_dataset.csv"
 FEATURE_RANKINGS_FILE = PROCESSED_DATA_DIR / "feature_rankings.csv"
 
 BEST_MODEL_FILE = MODELS_DIR / "best_model.pkl"
@@ -44,6 +45,13 @@ SCRAPING_FAILURE_LOG_FILE = LOGS_DIR / "scraping_failures.log"
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
 VALIDATION_CV = 3
+
+# Features excluded from training because they can encode source-collection bias
+# and produce artificially perfect evaluation scores.
+EXCLUDED_FEATURES = {
+    "uses_https",
+    "has_http_token",
+}
 
 API_DEFAULT_INCLUDE_CONTENT = True
 CONTENT_REQUEST_TIMEOUT = 8

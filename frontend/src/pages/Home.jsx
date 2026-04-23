@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import ErrorMessage from '../components/ErrorMessage';
 import FeatureList from '../components/FeatureList';
-import Header from '../components/Header';
 import Loader from '../components/Loader';
 import ResultCard from '../components/ResultCard';
 import UrlForm from '../components/UrlForm';
@@ -39,7 +38,17 @@ export default function Home() {
       <div className="ambient ambient-two" />
 
       <div className="content-shell">
-        <Header />
+        <header className="app-topbar card">
+          <div className="topbar-left">
+            <p className="topbar-kicker">Security Intelligence Platform</p>
+            <h1>Phishing website detection</h1>
+          </div>
+
+          <div className="topbar-right">
+            <span className="topbar-chip status-live">API Live</span>
+          </div>
+        </header>
+
         <UrlForm onSubmit={handlePredict} loading={loading} />
         <ErrorMessage message={error} />
         {loading && <Loader />}

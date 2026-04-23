@@ -3,11 +3,15 @@ from __future__ import annotations
 from pathlib import Path
 
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 from src.config import (
     CLEANED_DATASET_FILE,
+    HOLDOUT_FEATURES_DATASET_FILE,
     FEATURED_DATASET_FILE,
+    RANDOM_STATE,
     SELECTED_FEATURES_DATASET_FILE,
+    TEST_SIZE,
 )
 from src.data_cleaning import clean_raw_dataset
 from src.data_loader import load_phishing_and_legitimate_data, load_raw_dataset, save_raw_dataset
@@ -55,9 +59,25 @@ def select_features(featured: pd.DataFrame) -> FeatureSelectionResult:
 
 def run_training_pipeline(include_content: bool = True, raw_dataset_path: Path | None = None) -> TrainingResult:
     featured = prepare_datasets(include_content=include_content, raw_dataset_path=raw_dataset_path)
-    select_features(featured)
-    selected_dataset = pd.read_csv(SELECTED_FEATURES_DATASET_FILE)
-    training_result = train_models(selected_dataset)
+    train_featured, holdout_featured = train_test_split(
+        featured,
+        test_size=TEST_SIZE,
+        random_state=RANDOM_STATE,
+        stratify=featured["label"].astype(int),
+    )
+
+    feature_selection = select_features(train_featured)
+    selected_columns = ["label"]
+    if "url" in train_featured.columns:
+        selected_columns = ["url", "label"]
+    selected_columns.extend(feature_selection.selected_features)
+
+    selected_train = train_featured[selected_columns].copy()
+    selected_holdout = holdout_featured[selected_columns].copy()
+    selected_train.to_csv(SELECTED_FEATURES_DATASET_FILE, index=False)
+    selected_holdout.to_csv(HOLDOUT_FEATURES_DATASET_FILE, index=False)
+
+    training_result = train_models(selected_train, selected_holdout)
     save_model_comparison_csv(training_result.comparison)
     plot_model_comparison(training_result.comparison)
     write_evaluation_report(training_result.comparison, training_result.model_name, training_result.metrics)

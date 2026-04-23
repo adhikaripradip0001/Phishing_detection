@@ -12,7 +12,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
 
-from src.config import FEATURE_IMPORTANCE_FILE, FEATURE_RANKINGS_FILE, SELECTED_FEATURES_FILE
+from src.config import EXCLUDED_FEATURES, FEATURE_IMPORTANCE_FILE, FEATURE_RANKINGS_FILE, SELECTED_FEATURES_FILE
 from src.utils import save_joblib_artifact
 
 
@@ -24,7 +24,11 @@ class FeatureSelectionResult:
 
 def rank_features(frame: pd.DataFrame, target_column: str = "label", top_k: int | None = None) -> FeatureSelectionResult:
     working = frame.copy()
-    feature_columns = [column for column in working.columns if column not in {target_column, "url"}]
+    feature_columns = [
+        column
+        for column in working.columns
+        if column not in {target_column, "url"} and column not in EXCLUDED_FEATURES
+    ]
 
     numeric_features = working[feature_columns].apply(pd.to_numeric, errors="coerce").fillna(0.0)
     target = working[target_column].astype(int)

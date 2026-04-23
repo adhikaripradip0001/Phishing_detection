@@ -7,7 +7,7 @@ from pathlib import Path
 import pandas as pd
 
 from app.app import get_app
-from src.config import FEATURED_DATASET_FILE
+from src.config import HOLDOUT_FEATURES_DATASET_FILE, FEATURED_DATASET_FILE
 from src.evaluate import evaluate_saved_model
 from src.pipeline import prepare_datasets, run_training_pipeline, select_features
 from src.predict import predict_single_url
@@ -44,8 +44,8 @@ def run_evaluate(include_content: bool, dataset_path: str | None = None) -> None
     custom_path = Path(dataset_path) if dataset_path else None
     featured = prepare_datasets(include_content=include_content, raw_dataset_path=custom_path)
     select_features(featured)
-    selected_dataset = pd.read_csv(FEATURED_DATASET_FILE.parent / "selected_features_dataset.csv")
-    comparison, metrics, model_name = evaluate_saved_model(selected_dataset)
+    selected_dataset = pd.read_csv(HOLDOUT_FEATURES_DATASET_FILE) if HOLDOUT_FEATURES_DATASET_FILE.exists() else pd.read_csv(FEATURED_DATASET_FILE.parent / "selected_features_dataset.csv")
+    comparison, metrics, model_name = evaluate_saved_model(selected_dataset, split_data=False)
     print(comparison.to_string(index=False))
     print(json.dumps({"best_model": model_name, "metrics": metrics}, indent=2))
 

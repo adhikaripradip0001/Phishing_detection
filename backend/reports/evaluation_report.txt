@@ -1,13 +1,16 @@
 AI-Based Phishing Website Detection System Evaluation
 
-Best Model: DecisionTreeClassifier
+Best Model: SVM
 
-accuracy: 1.0000
-precision: 1.0000
+accuracy: 0.9999
+precision: 0.9999
 recall: 1.0000
-f1_score: 1.0000
+f1_score: 0.9999
 roc_auc: 1.0000
 
 Model Comparison:
-                 model  cv_f1  accuracy  precision  recall  f1_score  roc_auc
-DecisionTreeClassifier    NaN       1.0        1.0     1.0       1.0      1.0
+              model    cv_f1  accuracy  precision   recall  f1_score  roc_auc
+                SVM 1.000000  0.999932   0.999863 1.000000  0.999932 1.000000
+      Random Forest 0.999966  0.999863   1.000000 0.999726  0.999863 1.000000
+      Decision Tree 0.999932  0.999795   1.000000 0.999589  0.999794 0.999795
+Logistic Regression 0.999949  0.999795   1.000000 0.999589  0.999794 0.999888

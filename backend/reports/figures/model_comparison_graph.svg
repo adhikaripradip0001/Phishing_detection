@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="580" viewBox="0 0 1100 580">
+  <rect x="0" y="0" width="1100" height="580" fill="#000000"/>
+  <text x="550" y="45" text-anchor="middle" fill="#e5e7eb" style="font:700 26px Arial, sans-serif;">Model Comparison Graph</text>
+  <text x="550" y="70" text-anchor="middle" fill="#9ca3af" style="font:14px Arial, sans-serif;">Decision Tree vs Random Forest vs SVM</text>
+
+  <line x1="90" y1="470" x2="1010" y2="470" stroke="#e5e7eb" stroke-width="2"/>
+  <line x1="90" y1="90" x2="90" y2="470" stroke="#e5e7eb" stroke-width="2"/>
+  <line x1="90" y1="166" x2="1010" y2="166" stroke="#d1d5db"/>
+  <line x1="90" y1="242" x2="1010" y2="242" stroke="#d1d5db"/>
+  <line x1="90" y1="318" x2="1010" y2="318" stroke="#d1d5db"/>
+  <line x1="90" y1="394" x2="1010" y2="394" stroke="#d1d5db"/>
+
+  <polyline points="190,91 490,91 790,90" fill="none" stroke="#2f6ad8" stroke-width="3"/>
+  <polyline points="190,90 490,90 790,90" fill="none" stroke="#f97316" stroke-width="3"/>
+  <polyline points="190,90 490,90 790,90" fill="none" stroke="#1fb788" stroke-width="3"/>
+
+  <circle cx="190" cy="91" r="5" fill="#2f6ad8"/>
+  <circle cx="490" cy="91" r="5" fill="#2f6ad8"/>
+  <circle cx="790" cy="90" r="5" fill="#2f6ad8"/>
+  <circle cx="190" cy="90" r="5" fill="#f97316"/>
+  <circle cx="490" cy="90" r="5" fill="#f97316"/>
+  <circle cx="790" cy="90" r="5" fill="#f97316"/>
+  <circle cx="190" cy="90" r="5" fill="#1fb788"/>
+  <circle cx="490" cy="90" r="5" fill="#1fb788"/>
+  <circle cx="790" cy="90" r="5" fill="#1fb788"/>
+
+  <text x="190" y="510" text-anchor="middle" fill="#d1d5db" style="font:15px Arial, sans-serif;">Decision Tree</text>
+  <text x="490" y="510" text-anchor="middle" fill="#d1d5db" style="font:15px Arial, sans-serif;">Random Forest</text>
+  <text x="790" y="510" text-anchor="middle" fill="#d1d5db" style="font:15px Arial, sans-serif;">SVM</text>
+
+  <rect x="790" y="112" width="14" height="14" fill="#2f6ad8"/>
+  <text x="812" y="124" fill="#d1d5db" style="font:14px Arial, sans-serif;">CV F1</text>
+  <rect x="790" y="136" width="14" height="14" fill="#f97316"/>
+  <text x="812" y="148" fill="#d1d5db" style="font:14px Arial, sans-serif;">Holdout Accuracy</text>
+  <rect x="790" y="160" width="14" height="14" fill="#1fb788"/>
+  <text x="812" y="172" fill="#d1d5db" style="font:14px Arial, sans-serif;">Holdout F1</text>
+</svg>

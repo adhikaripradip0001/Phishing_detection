@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 
-from src.config import SCALER_FILE
+from src.config import EXCLUDED_FEATURES, SCALER_FILE
 from src.utils import save_joblib_artifact
 
 
@@ -61,5 +61,8 @@ def prepare_training_features(frame: pd.DataFrame, target_column: str = "label")
     features = frame.drop(columns=[target_column], errors="ignore").copy()
     if "url" in features.columns:
         features = features.drop(columns=["url"])
+    removable = [column for column in EXCLUDED_FEATURES if column in features.columns]
+    if removable:
+        features = features.drop(columns=removable)
     target = frame[target_column].astype(int)
     return features, target
