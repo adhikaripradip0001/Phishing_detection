@@ -25,6 +25,13 @@ This document provides an overview of all available dataset visualization charts
 
 ---
 
+### 4. Top Features Importance (New)
+**File:** `feature_importance_top20.png`
+**Description:** Horizontal bar chart showing the top 20 features ranked by Random Forest importance (or fallback importance). Useful for highlighting which engineered features contributed most to model predictions.
+**Best For:** Explaining feature relevance and supporting model interpretability in results discussion
+
+---
+
 ### 4. Dataset Distribution Chart
 **File:** `dataset_distribution_chart.svg`
 **Description:** Visual representation of phishing vs legitimate dataset proportions.
