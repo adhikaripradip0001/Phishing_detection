@@ -21,15 +21,11 @@ else:
     fr['importance'] = fr['abs_correlation']
 
 top_features = fr.sort_values('importance', ascending=False)['feature'].tolist()
-# choose top 8 for individual plots, top 6 for pairplot, top 20 for heatmap
-top8 = top_features[:8]
-top6 = top_features[:6]
-top20 = top_features[:20]
 
-# Ensure features exist in featured dataset
-top8 = [f for f in top8 if f in featured.columns]
-top6 = [f for f in top6 if f in featured.columns]
-top20 = [f for f in top20 if f in featured.columns]
+# Use the strongest features for the detailed plots
+top8 = [f for f in top_features[:8] if f in featured.columns]
+top6 = [f for f in top_features[:6] if f in featured.columns]
+top20 = [f for f in top_features[:20] if f in featured.columns]
 
 # 1. Histograms + KDE for top8
 for feat in top8:
@@ -84,6 +80,51 @@ plt.title('Feature Correlation Heatmap (Top 20)')
 plt.tight_layout()
 plt.savefig(reports_path / 'features_correlation_heatmap_top20.png', dpi=300, bbox_inches='tight')
 plt.close()
+
+
+# 7. Project-aligned feature shape overview using only features that vary in the processed dataset
+candidate_shape_features = [
+    'url_length',
+    'domain_length',
+    'path_length',
+    'num_digits',
+    'num_special_chars',
+    'suspicious_keyword_count',
+    'has_login_keyword',
+    'brand_similarity_score',
+]
+
+shape_features = []
+for feat in candidate_shape_features:
+    if feat in featured.columns and featured[feat].nunique(dropna=True) > 1:
+        shape_features.append(feat)
+
+# Keep the figure concise and presentation-friendly
+shape_features = shape_features[:6]
+
+if shape_features:
+    fig, axes = plt.subplots(2, 3, figsize=(16, 9))
+    axes = axes.flatten()
+    for ax, feat in zip(axes, shape_features):
+        for lab, color, label in [(0, '#45B7D1', 'Legitimate'), (1, '#FF6B6B', 'Phishing')]:
+            subset = featured[featured['label'] == lab][feat].dropna()
+            if subset.nunique(dropna=True) > 1:
+                sns.kdeplot(subset, ax=ax, fill=True, alpha=0.30, linewidth=2, color=color, label=label, warn_singular=False)
+            else:
+                ax.axvline(subset.iloc[0] if len(subset) else 0, color=color, linewidth=2, label=label)
+        ax.set_title(feat.replace('_', ' ').title(), fontweight='bold')
+        ax.set_xlabel(feat.replace('_', ' ').title())
+        ax.set_ylabel('Density')
+        ax.legend()
+    for ax in axes[len(shape_features):]:
+        ax.axis('off')
+    fig.suptitle('Feature Shape Overview Across Variable Lexical and Brand Features', fontsize=16, fontweight='bold')
+    plt.tight_layout(rect=[0, 0, 1, 0.96])
+    out_path = reports_path / 'feature_shape_overview_project_aligned.png'
+    plt.savefig(out_path, dpi=300, bbox_inches='tight')
+    plt.close()
+    print('Saved project-aligned shape overview:', out_path)
+    print('Shape features used:', shape_features)
 
 print('Saved plots for features:', top8)
 print('Pairplot saved and heatmap saved')

@@ -39,10 +39,10 @@ This document provides an overview of all available dataset visualization charts
 
 ---
 
-### 6. Feature Shape Overview (New)
-**File:** `feature_shape_overview.png`
-**Description:** 2x2 panel of KDE density plots showing the distribution shape of the top predictive features for phishing vs legitimate classes.
-**Best For:** Figure sections that need a compact visual summary of feature distribution shapes
+### 6. Feature Shape Overview (Project-Aligned)
+**File:** `feature_shape_overview_project_aligned.png`
+**Description:** 2x3 panel of KDE density plots covering lexical, domain, and content features. This is the best figure for showing distribution shapes across your full phishing detection pipeline.
+**Best For:** Figure sections that need a balanced summary of feature shapes across feature families
 
 ---
 
