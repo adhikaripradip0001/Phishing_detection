@@ -32,6 +32,13 @@ This document provides an overview of all available dataset visualization charts
 
 ---
 
+### 5. Top Features Importance — Normalized & Annotated (New)
+**File:** `feature_importance_top20_annotated.png`
+**Description:** Horizontal bar chart of the top 20 features with normalized importance (proportion of total importance) and annotated percentage labels. Use this in presentations to clearly communicate relative feature contributions.
+**Best For:** Presentation slides and results discussion where clear percentage annotations improve readability
+
+---
+
 ### 4. Dataset Distribution Chart
 **File:** `dataset_distribution_chart.svg`
 **Description:** Visual representation of phishing vs legitimate dataset proportions.
