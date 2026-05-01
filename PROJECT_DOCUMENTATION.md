@@ -1,4 +1,4 @@
-# AI-Based Phishing Website Detection System
+# AI-Based Phishing Website Detection
 
 ## 1. Project Overview
 This project is a full-stack phishing website detection system built with supervised machine learning. It classifies URLs into two classes:
