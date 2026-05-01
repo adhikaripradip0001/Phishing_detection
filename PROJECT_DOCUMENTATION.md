@@ -1,11 +1,11 @@
 # AI-Based Phishing Website Detection System
 
 ## 1. Project Overview
-This project is a full-stack phishing website detection platform built with supervised machine learning. It classifies URLs into two classes:
+This project is a full-stack phishing website detection system built with supervised machine learning. It classifies URLs into two classes:
 - phishing
 - legitimate
 
-The system combines hybrid feature engineering and live prediction:
+The system uses:
 - URL lexical features
 - domain/WHOIS features
 - optional live content scraping features
@@ -16,14 +16,7 @@ The project includes:
 - saved model artifacts and reports
 - tests for key detection components
 
-## 2. Objectives
-- Detect phishing websites accurately in real time.
-- Use multiple feature families to improve robustness.
-- Support reproducible training and evaluation.
-- Provide a user-friendly interface for classification.
-- Generate dissertation-ready outputs (reports and comparisons).
-
-## 3. Technology Stack
+## 2. Technology Stack
 ### Backend
 - Python 3
 - Flask
@@ -59,10 +52,10 @@ The platform follows a layered architecture.
 - POST /api/predict
 
 ### 5.3 Intelligence Layer
-- Feature extraction engine computes URL, domain, and content features.
-- Preprocessor transforms features to model-ready format.
-- Best trained model predicts phishing probability.
-- Risk heuristics handle high-risk patterns (for example typo-brand domains).
+- Feature extraction computes URL, domain, and content features.
+- Preprocessing prepares features for the model.
+- The trained model predicts phishing probability.
+- Risk heuristics flag high-risk patterns such as typo-brand domains.
 
 ### 5.4 Data and Artifact Layer
 - Raw and processed datasets in backend/data.
@@ -203,25 +196,14 @@ Focused tests used during development:
 - Use a production WSGI server for deployment.
 - Add model versioning and periodic retraining schedule.
 
-## 15. Ethical Considerations
-- Use this system as decision support, not as a sole automated authority for blocking or legal action.
-- Minimize false positives to avoid unfairly flagging legitimate businesses and websites.
-- Minimize false negatives to reduce exposure of users to harmful phishing pages.
-- Respect data privacy: do not collect personal user data beyond what is needed for URL-based analysis.
-- Limit retention of logs and ensure any stored data is protected and access-controlled.
-- Be transparent about model confidence, uncertainty, and system limitations.
-- Regularly audit model behavior for bias caused by dataset imbalance or narrow domain coverage.
-- Ensure responsible scraping practices: obey legal constraints, terms of service, and rate limits.
-- Maintain human oversight for high-impact decisions in operational deployments.
-
-## 16. Suggested Future Enhancements
+## 15. Suggested Future Enhancements
 - Expand data coverage using additional public sources.
 - Add model calibration and threshold tuning.
 - Add SHAP-based explainability.
 - Add Dockerized deployment.
 - Add authentication and audit trail for enterprise use.
 
-## 17. Authoring Notes
+## 16. Authoring Notes
 This documentation complements:
 - README.md for quick usage
 - backend/reports/methodology.md for research methodology details
