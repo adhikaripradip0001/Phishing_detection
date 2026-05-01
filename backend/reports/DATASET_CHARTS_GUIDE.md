@@ -46,56 +46,70 @@ This document provides an overview of all available dataset visualization charts
 
 ---
 
-### 4. Dataset Distribution Chart
+### 7. Feature Distribution Overview (Project-Aligned)
+**File:** `feature_distribution_overview_project_aligned.png`
+**Description:** 2x3 panel of histograms showing feature value distributions separated by class (phishing vs legitimate). Uses same 6 varying features as shape overview for consistency and complementary visualization of distribution patterns.
+**Best For:** Showing density distributions and class separation; histogram view complements KDE-based shape overview
+
+---
+
+### 8. Dataset Distribution Chart
 **File:** `dataset_distribution_chart.svg`
 **Description:** Visual representation of phishing vs legitimate dataset proportions.
 **Best For:** Quick overview of class balance
 
 ---
 
-### 5. Dataset Collection Flow
+### 9. Dataset Collection Flow
 **File:** `dataset_collection_flow.svg`
 **Description:** Flowchart showing how data flows through collection from multiple sources.
 **Best For:** Explaining data acquisition methodology
 
 ---
 
-### 6. Data Processing Pipeline
+### 10. Data Processing Pipeline
 **File:** `data_processing_pipeline.svg`
 **Description:** Diagram showing the data processing stages and transformations.
 **Best For:** Explaining preprocessing and data cleaning steps
 
 ---
 
-### 7. Corrected Experimental Pipeline
+### 11. Corrected Experimental Pipeline
 **File:** `corrected_experimental_pipeline.svg`
 **Description:** Comprehensive pipeline diagram showing all stages from raw data to final model.
 **Best For:** Providing complete overview of the experimental methodology
 
 ---
 
-### 8. Model Comparison
+### 12. Model Comparison
 **File:** `model_comparison.png` and `model_comparison_graph.svg`
 **Description:** Bar charts comparing performance metrics across different ML models (Decision Tree, Random Forest, SVM).
 **Best For:** Showing model selection process and comparative performance
 
 ---
 
-### 9. Feature Importance
+### 12. Model Comparison
+**File:** `model_comparison.png` and `model_comparison_graph.svg`
+**Description:** Bar charts comparing performance metrics across different ML models (Decision Tree, Random Forest, SVM).
+**Best For:** Showing model selection process and comparative performance
+
+---
+
+### 13. Feature Importance
 **File:** `feature_importance.png`
 **Description:** Bar chart ranking features by their importance in the trained model.
 **Best For:** Explaining which features are most predictive for phishing detection
 
 ---
 
-### 10. ROC Curve
+### 14. ROC Curve
 **File:** `roc_curve.png`
 **Description:** ROC curve showing model performance across different classification thresholds.
 **Best For:** Demonstrating model discrimination ability and AUC score
 
 ---
 
-### 11. Confusion Matrix
+### 15. Confusion Matrix
 **File:** `confusion_matrix.png`
 **Description:** Heatmap showing True Positives, True Negatives, False Positives, and False Negatives.
 **Best For:** Detailed analysis of prediction accuracy and error types
@@ -110,11 +124,13 @@ For a clear dissertation presentation, consider using the charts in this order:
 2. **Dataset Class Balance** - Show your data composition
 3. **Dataset Size Comparison** - Quantify your dataset
 4. **Feature Reduction Chart** - Explain feature engineering effectiveness
-5. **Data Processing Pipeline** - Show data cleaning and preparation
-6. **Model Comparison** - Present candidate models and selection
-7. **Feature Importance** - Show key predictive features
-8. **Confusion Matrix** - Detail model accuracy
-9. **ROC Curve** - Demonstrate model performance metrics
+5. **Feature Shape Overview** - Show distribution shapes of key features
+6. **Feature Distribution Overview** - Show histogram distributions of key features
+7. **Data Processing Pipeline** - Show data cleaning and preparation
+8. **Model Comparison** - Present candidate models and selection
+9. **Feature Importance** - Show key predictive features
+10. **Confusion Matrix** - Detail model accuracy
+11. **ROC Curve** - Demonstrate model performance metrics
 
 ## Using These Charts in Your Document
 
